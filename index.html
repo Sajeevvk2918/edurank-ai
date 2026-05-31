@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>EduRank AI – India's Smartest College Predictor | NIRF 2025</title>
+<meta name="description" content="AI-powered college predictor for Engineering, Medical, Law, Business and Arts. Enter your JEE, NEET, CLAT, CAT rank and discover best colleges using NIRF 2025 rankings, placement data, and counseling details."/>
+<meta name="keywords" content="JEE Main college predictor, NEET college predictor, CLAT predictor, CAT MBA predictor, NIRF 2025, engineering college India, medical college India, NIT predictor, IIT predictor, best colleges India 2025"/>
+<meta name="author" content="Sajeev"/>
+<meta property="og:title" content="EduRank AI – India's Smartest College Predictor"/>
+<meta property="og:description" content="Find the best colleges in India powered by AI & NIRF 2025. Engineering, Medical, Law, Business – all in one place."/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://edurank.ai/"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --c:#00f0ff;--c2:#00c8e0;--m:#ff2d7a;--g:#00ff94;--gold:#ffcc00;
+  --bg:#02080f;--bg2:#040f1a;--bg3:#061524;--bg4:#081c2e;
+  --panel:rgba(0,240,255,.04);--border:rgba(0,240,255,.12);--border2:rgba(0,240,255,.22);
+  --txt:#b8dff0;--muted:#3d6878;--bright:#e8f8ff;
+  --fh:'Orbitron',monospace;--fb:'Syne',sans-serif;--fm:'JetBrains Mono',monospace;
+  --r:6px;--transition:.25s cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--fb);min-height:100vh;overflow-x:hidden;font-size:15px;line-height:1.6}
+
+/* ─ BG effects ─ */
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,240,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,.018) 1px,transparent 1px);
+  background-size:52px 52px}
+.bg-glow{position:fixed;z-index:0;pointer-events:none;border-radius:50%;filter:blur(120px);opacity:.12}
+.bg-glow.a{width:600px;height:600px;background:var(--c);top:-200px;left:-200px}
+.bg-glow.b{width:500px;height:500px;background:var(--m);bottom:-150px;right:-150px}
+.bg-glow.c{width:400px;height:400px;background:var(--g);top:40%;left:50%;transform:translate(-50%,-50%)}
+.scanlines{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.015) 3px,rgba(0,0,0,.015) 6px)}
+
+/* ─ corners ─ */
+.corner{position:fixed;width:40px;height:40px;pointer-events:none;z-index:9}
+.corner.tl{top:12px;left:12px;border-top:1px solid var(--c);border-left:1px solid var(--c);opacity:.6}
+.corner.tr{top:12px;right:12px;border-top:1px solid var(--c);border-right:1px solid var(--c);opacity:.6}
+.corner.bl{bottom:12px;left:12px;border-bottom:1px solid var(--c);border-left:1px solid var(--c);opacity:.6}
+.corner.br{bottom:12px;right:12px;border-bottom:1px solid var(--c);border-right:1px solid var(--c);opacity:.6}
+
+/* ─ layout ─ */
+.wrap{position:relative;z-index:2;max-width:980px;margin:0 auto;padding:24px 20px 100px}
+
+/* ─ header ─ */
+header{text-align:center;padding:44px 0 28px;animation:fadeUp .8s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+.brand{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:12px}
+.logo{position:relative;width:52px;height:52px}
+.logo-hex{width:52px;height:52px;
+  background:linear-gradient(135deg,var(--c),var(--c2));
+  clip-path:polygon(50% 0%,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fh);font-size:16px;color:#010a12;font-weight:900;
+  animation:hexPulse 4s ease infinite}
+@keyframes hexPulse{0%,100%{filter:drop-shadow(0 0 8px rgba(0,240,255,.4))}50%{filter:drop-shadow(0 0 20px rgba(0,240,255,.8))}}
+
+.brand-text h1{font-family:var(--fh);font-size:clamp(18px,4.5vw,30px);font-weight:900;letter-spacing:2px;
+  background:linear-gradient(135deg,var(--c) 0%,#fff 50%,var(--c) 100%);
+  background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmer 4s linear infinite}
+@keyframes shimmer{0%{background-position:100%}100%{background-position:-100%}}
+.brand-text h1 span{display:block;font-size:.48em;letter-spacing:5px;
+  -webkit-text-fill-color:var(--m);color:var(--m);margin-top:2px;
+  animation:none}
+.tagline{font-family:var(--fm);font-size:11px;color:var(--muted);letter-spacing:2.5px;margin-top:10px}
+
+/* ─ status bar ─ */
+.status-bar{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap}
+.pill{font-family:var(--fm);font-size:9px;letter-spacing:1px;padding:5px 12px;
+  border:1px solid var(--border);background:rgba(0,240,255,.03);color:var(--c2);
+  display:flex;align-items:center;gap:7px;border-radius:2px;
+  transition:border-color var(--transition),background var(--transition)}
+.pill:hover{border-color:var(--border2);background:rgba(0,240,255,.07)}
+.dot{width:5px;height:5px;border-radius:50%;background:#00ff94;animation:blink 2s infinite}
+.dot.y{background:var(--gold)}.dot.m{background:var(--m)}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
+
+/* ─ stream tabs ─ */
+.stream-nav{display:flex;gap:0;border-bottom:1px solid var(--border);margin:28px 0 0;
+  overflow-x:auto;scrollbar-width:none}
+.stream-nav::-webkit-scrollbar{display:none}
+.stab{flex-shrink:0;padding:12px 22px;font-family:var(--fm);font-size:10px;letter-spacing:2px;
+  background:transparent;border:none;border-bottom:2px solid transparent;
+  color:var(--muted);cursor:pointer;text-transform:uppercase;
+  transition:all var(--transition);display:flex;align-items:center;gap:8px}
+.stab svg{width:14px;height:14px;opacity:.6;transition:opacity var(--transition)}
+.stab.active{color:var(--c);border-bottom-color:var(--c)}
+.stab.active svg{opacity:1}
+.stab:hover:not(.active){color:var(--txt);background:rgba(0,240,255,.03)}
+
+/* ─ stream panels ─ */
+.stream-panel{display:none;animation:fadeUp .4s ease both}
+.stream-panel.active{display:block}
+
+/* ─ panel ─ */
+.panel{background:var(--panel);border:1px solid var(--border);padding:24px 26px;margin-bottom:14px;
+  position:relative;border-radius:var(--r);
+  transition:border-color var(--transition)}
+.panel:hover{border-color:var(--border2)}
+.panel::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--c),transparent);opacity:.3;border-radius:1px}
+.panel-label{font-family:var(--fm);font-size:9px;letter-spacing:2.5px;color:var(--c);
+  text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.panel-label::before{content:'//';color:var(--m);font-size:10px}
+
+/* ─ form ─ */
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:14px}
+.fgrid.wide{grid-template-columns:1fr 1fr}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.flabel{font-family:var(--fm);font-size:9px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;
+  transition:color var(--transition)}
+.field:focus-within .flabel{color:var(--c)}
+
+select,input[type=number],input[type=text]{
+  background:rgba(0,16,30,.9);border:1px solid var(--border);color:var(--bright);
+  font-family:var(--fb);font-size:14px;padding:10px 13px;outline:none;width:100%;
+  -webkit-appearance:none;appearance:none;border-radius:var(--r);
+  transition:border-color var(--transition),box-shadow var(--transition),background var(--transition)}
+select:focus,input:focus{
+  border-color:var(--c);
+  box-shadow:0 0 0 3px rgba(0,240,255,.1),inset 0 0 12px rgba(0,240,255,.04);
+  background:rgba(0,20,38,.95)}
+select option{background:#040e1a;color:var(--bright)}
+
+/* custom select arrow */
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2300f0ff' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
+
+.score-hint{font-family:var(--fm);font-size:10px;color:var(--gold);min-height:16px;
+  transition:all var(--transition)}
+
+/* phase chips */
+.phase-wrap{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
+.pchip{font-family:var(--fm);font-size:9px;letter-spacing:.5px;padding:6px 11px;
+  border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;
+  border-radius:var(--r);transition:all var(--transition)}
+.pchip.active{border-color:var(--c);color:var(--c);background:rgba(0,240,255,.08);
+  box-shadow:0 0 10px rgba(0,240,255,.12)}
+.pchip:hover:not(.active){border-color:var(--border2);color:var(--txt)}
+
+/* compare box */
+.compare-strip{background:rgba(0,240,255,.03);border:1px solid var(--border);
+  border-radius:var(--r);padding:12px 16px;margin-top:14px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.compare-label{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:1px}
+.compare-pills{display:flex;gap:8px;flex-wrap:wrap}
+.cpill{font-family:var(--fm);font-size:9px;padding:4px 10px;
+  border:1px solid var(--border);color:var(--muted);border-radius:2px;
+  background:transparent;cursor:pointer;transition:all var(--transition)}
+.cpill.sel{border-color:var(--m);color:var(--m);background:rgba(255,45,122,.06)}
+.cpill:hover:not(.sel){border-color:var(--border2);color:var(--txt)}
+
+/* cta */
+.cta{width:100%;padding:14px;background:transparent;border:1px solid var(--c);
+  color:var(--c);font-family:var(--fh);font-size:11px;font-weight:700;letter-spacing:3px;
+  cursor:pointer;margin-top:12px;position:relative;overflow:hidden;
+  border-radius:var(--r);transition:color var(--transition),transform var(--transition);
+  text-transform:uppercase}
+.cta-inner{position:absolute;inset:0;background:linear-gradient(90deg,var(--c),var(--c2));
+  transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.4,0,.2,1);z-index:0}
+.cta span{position:relative;z-index:1}
+.cta:hover .cta-inner{transform:scaleX(1)}
+.cta:hover{color:#010a12;transform:translateY(-1px)}
+.cta:active{transform:translateY(0)}
+.cta:disabled{opacity:.3;cursor:not-allowed;transform:none}
+.cta:disabled .cta-inner{transform:none!important}
+
+/* error */
+.err{border:1px solid var(--m);background:rgba(255,45,122,.06);padding:12px 14px;
+  font-family:var(--fm);font-size:10px;color:var(--m);margin-bottom:12px;
+  border-radius:var(--r);display:none;animation:fadeUp .3s ease both}
+.err.on{display:block}
+
+/* loader */
+.loader{text-align:center;padding:60px 20px;display:none}
+.loader.on{display:block;animation:fadeUp .4s ease both}
+.spin-ring{width:60px;height:60px;margin:0 auto 20px;position:relative}
+.spin-ring::before,.spin-ring::after{content:'';position:absolute;inset:0;border-radius:50%}
+.spin-ring::before{border:2px solid var(--border)}
+.spin-ring::after{border:2px solid transparent;border-top-color:var(--c);
+  animation:spin 1s linear infinite;
+  filter:drop-shadow(0 0 6px var(--c))}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader-label{font-family:var(--fm);font-size:10px;color:var(--muted);letter-spacing:2px;margin-top:8px}
+.loader-label b{color:var(--c);font-weight:400;animation:blink 1.2s infinite}
+.loader-sub{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:6px;opacity:.6}
+
+/* results */
+#results{display:none}
+#results.on{display:block;animation:fadeUp .5s ease both}
+
+/* summary */
+.summary-panel{background:linear-gradient(135deg,rgba(0,240,255,.05),rgba(0,200,224,.02));
+  border:1px solid var(--border2);padding:18px 22px;margin-bottom:18px;border-radius:var(--r);
+  position:relative;overflow:hidden}
+.summary-panel::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 60%,rgba(0,240,255,.04));pointer-events:none}
+.summary-title{font-family:var(--fm);font-size:9px;color:var(--c);letter-spacing:2.5px;margin-bottom:10px;
+  display:flex;align-items:center;gap:8px}
+.summary-title::before{content:'';width:16px;height:1px;background:var(--c);opacity:.5}
+.summary-txt{font-size:14px;color:var(--bright);line-height:1.75}
+
+/* results header */
+.res-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.res-title{font-family:var(--fh);font-size:12px;color:var(--c);letter-spacing:2px}
+.res-meta{font-family:var(--fm);font-size:9px;color:var(--muted)}
+
+/* compare panel */
+.compare-result-panel{display:none;border:1px solid var(--border);border-radius:var(--r);
+  background:var(--panel);padding:18px 20px;margin-bottom:18px;animation:fadeUp .4s ease both}
+.compare-result-panel.on{display:block}
+.compare-table{width:100%;border-collapse:collapse;font-size:13px}
+.compare-table th{font-family:var(--fm);font-size:9px;letter-spacing:1px;color:var(--c);
+  padding:8px 10px;border-bottom:1px solid var(--border);text-align:left}
+.compare-table td{padding:8px 10px;border-bottom:1px solid rgba(0,240,255,.06);color:var(--txt);vertical-align:top}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table td:first-child{color:var(--muted);font-family:var(--fm);font-size:9px;letter-spacing:.5px;white-space:nowrap}
+
+/* divider */
+.divider{display:flex;align-items:center;gap:10px;margin:20px 0 13px}
+.div-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+.div-txt{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:2px;white-space:nowrap;padding:0 4px}
+
+/* college card */
+.card{border:1px solid var(--border);background:rgba(4,14,26,.9);padding:18px 20px;
+  margin-bottom:10px;position:relative;border-radius:var(--r);
+  transition:border-color var(--transition),transform var(--transition),box-shadow var(--transition);
+  cursor:default}
+.card:hover{border-color:rgba(0,240,255,.35);transform:translateY(-2px) translateX(2px);
+  box-shadow:0 8px 32px rgba(0,0,0,.4),0 0 0 1px rgba(0,240,255,.08)}
+.card-accent{position:absolute;left:0;top:6px;bottom:6px;width:3px;border-radius:2px;
+  background:linear-gradient(180deg,var(--c),var(--c2));opacity:0;transition:opacity var(--transition)}
+.card:hover .card-accent{opacity:1}
+
+/* bookmark */
+.bm-btn{position:absolute;top:14px;right:50px;background:transparent;border:1px solid var(--border);
+  color:var(--muted);cursor:pointer;width:28px;height:28px;border-radius:4px;
+  display:flex;align-items:center;justify-content:center;font-size:13px;
+  transition:all var(--transition)}
+.bm-btn:hover,.bm-btn.saved{border-color:var(--gold);color:var(--gold);background:rgba(255,204,0,.08)}
+
+.tier-badge{position:absolute;top:14px;right:14px;font-family:var(--fm);font-size:8px;
+  letter-spacing:1px;padding:3px 9px;border:1px solid;border-radius:2px}
+.t-safe{color:#00ff94;border-color:#00ff94;background:rgba(0,255,148,.06)}
+.t-mod{color:var(--gold);border-color:var(--gold);background:rgba(255,204,0,.06)}
+.t-reach{color:var(--m);border-color:var(--m);background:rgba(255,45,122,.06)}
+
+.c-name{font-family:var(--fh);font-size:12px;color:var(--bright);margin-bottom:3px;
+  padding-right:100px;letter-spacing:.5px;line-height:1.3}
+.c-loc{font-family:var(--fm);font-size:9px;color:var(--muted);margin-bottom:14px;letter-spacing:.5px}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px}
+.sbox{background:rgba(0,240,255,.025);border:1px solid rgba(0,240,255,.07);
+  padding:9px 11px;border-radius:4px;transition:background var(--transition)}
+.card:hover .sbox{background:rgba(0,240,255,.04)}
+.slabel{font-family:var(--fm);font-size:8px;color:var(--muted);letter-spacing:1px;margin-bottom:4px}
+.sval{font-family:var(--fh);font-size:13px;color:var(--c);line-height:1.2}
+.sval.g{color:var(--gold)}.sval.gr{color:#00ff94}.sval.m{color:var(--m)}
+.sval.sm{font-size:10px;font-family:var(--fm);color:var(--bright)}
+.sval.xs{font-size:9px;font-family:var(--fm);color:var(--txt)}
+
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tag{font-family:var(--fm);font-size:8px;letter-spacing:.5px;padding:3px 8px;
+  border:1px solid rgba(0,200,224,.2);color:var(--c2);background:rgba(0,200,224,.04);
+  border-radius:2px;transition:all var(--transition)}
+.tag:hover{border-color:var(--c2);background:rgba(0,200,224,.08)}
+
+.insight{margin-top:12px;padding:10px 13px;border-left:2px solid var(--m);
+  background:rgba(255,45,122,.04);font-size:12px;color:#ffaad0;line-height:1.6;
+  border-radius:0 4px 4px 0}
+.i-label{font-family:var(--fm);font-size:8px;color:var(--m);letter-spacing:1px;margin-bottom:4px}
+
+/* compare checkbox inside card */
+.card-compare{display:flex;align-items:center;gap:6px;margin-top:12px}
+.card-compare input[type=checkbox]{accent-color:var(--c);width:13px;height:13px;cursor:pointer}
+.card-compare label{font-family:var(--fm);font-size:9px;color:var(--muted);cursor:pointer;letter-spacing:.5px}
+
+/* bookmarks sidebar */
+.bm-panel{background:var(--panel);border:1px solid var(--border);padding:16px 18px;
+  margin-bottom:14px;border-radius:var(--r);display:none;animation:fadeUp .3s ease both}
+.bm-panel.on{display:block}
+.bm-item{display:flex;align-items:center;justify-content:space-between;padding:6px 0;
+  border-bottom:1px solid rgba(0,240,255,.05);font-size:13px;gap:10px}
+.bm-item:last-child{border-bottom:none}
+.bm-name{font-family:var(--fh);font-size:10px;color:var(--bright);flex:1}
+.bm-rm{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:12px;
+  font-family:var(--fm);letter-spacing:.5px;padding:2px 6px;
+  transition:color var(--transition)}
+.bm-rm:hover{color:var(--m)}
+
+/* no result */
+.no-res{text-align:center;padding:48px;font-family:var(--fm);color:var(--muted);font-size:11px;letter-spacing:1px}
+
+/* footer */
+footer{text-align:center;margin-top:36px;padding-top:22px;border-top:1px solid var(--border)}
+.disc{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:1px;line-height:2.2}
+.built{font-family:var(--fh);font-size:11px;letter-spacing:4px;color:var(--c);
+  margin-top:16px;opacity:.7;transition:opacity var(--transition)}
+.built:hover{opacity:1}
+.built span{color:var(--m)}
+
+/* smooth show/hide */
+.field-hidden{display:none!important}
+
+/* animate cards */
+.card{animation:fadeUp .4s ease both}
+.card:nth-child(2){animation-delay:.05s}
+.card:nth-child(3){animation-delay:.1s}
+.card:nth-child(4){animation-delay:.15s}
+.card:nth-child(5){animation-delay:.2s}
+.card:nth-child(n+6){animation-delay:.25s}
+
+/* tooltip */
+[data-tip]{position:relative;cursor:help}
+[data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 6px);left:50%;
+  transform:translateX(-50%);background:#0a1e30;border:1px solid var(--border2);
+  font-family:var(--fm);font-size:9px;color:var(--txt);padding:5px 9px;white-space:nowrap;
+  border-radius:4px;z-index:100;pointer-events:none;letter-spacing:.5px}
+
+/* responsive */
+@media(max-width:600px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .fgrid.wide{grid-template-columns:1fr}
+  .stab{padding:10px 14px;font-size:9px}
+}
+
+/* single-college notice */
+.single-college-notice{display:none;align-items:center;gap:10px;padding:10px 14px;
+  border:1px solid rgba(255,204,0,.3);background:rgba(255,204,0,.05);
+  border-radius:var(--r);margin-top:4px;animation:fadeUp .3s ease both}
+.single-college-notice.on{display:flex}
+.single-college-notice svg{flex-shrink:0;width:15px;height:15px;color:var(--gold)}
+.single-college-notice span{font-family:var(--fm);font-size:9px;color:var(--gold);letter-spacing:.8px;line-height:1.6}
+
+/* scrollbar */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--muted);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--c2)}
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-glow a"></div>
+<div class="bg-glow b"></div>
+<div class="bg-glow c"></div>
+<div class="scanlines"></div>
+<div class="corner tl"></div><div class="corner tr"></div>
+<div class="corner bl"></div><div class="corner br"></div>
+
+<div class="wrap">
+
+<!-- HEADER -->
+<header>
+  <div class="brand">
+    <div class="logo"><div class="logo-hex">AI</div></div>
+    <div class="brand-text">
+      <h1>EDURANK AI<span>INDIA'S SMARTEST COLLEGE PREDICTOR · NIRF 2025</span></h1>
+    </div>
+  </div>
+  <p class="tagline">Engineering · Medical · Law · Business · Arts & Science</p>
+  <div class="status-bar">
+    <div class="pill"><div class="dot"></div>AI ENGINE ONLINE</div>
+    <div class="pill"><div class="dot y"></div>NIRF 2025 VERIFIED</div>
+    <div class="pill"><div class="dot m"></div>1200+ COLLEGES</div>
+    <div class="pill"><div class="dot"></div>ALL STREAMS</div>
+  </div>
+</header>
+
+<!-- STREAM TABS -->
+<nav class="stream-nav" role="tablist" aria-label="Stream selector">
+  <button class="stab active" onclick="switchStream('engineering',this)" role="tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+    Engineering
+  </button>
+  <button class="stab" onclick="switchStream('medical',this)" role="tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.5 12.75l6 6 9-13.5"/></svg>
+    Medical / NEET
+  </button>
+  <button class="stab" onclick="switchStream('law',this)" role="tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.97z"/></svg>
+    Law / CLAT
+  </button>
+  <button class="stab" onclick="switchStream('business',this)" role="tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/></svg>
+    Business / MBA
+  </button>
+  <button class="stab" onclick="switchStream('arts',this)" role="tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/></svg>
+    Arts & Science
+  </button>
+  <button class="stab" onclick="switchStream('bookmarks',this)" role="tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"/></svg>
+    Saved <span id="bm-count" style="font-family:var(--fm);font-size:8px;background:var(--m);color:#fff;padding:1px 5px;border-radius:2px;margin-left:4px;display:none">0</span>
+  </button>
+</nav>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- ENGINEERING -->
+<!-- ══════════════════════════════════════════ -->
+<div class="stream-panel active" id="sp-engineering">
+  <div class="panel" style="margin-top:18px">
+    <div class="panel-label">Engineering Entrance — Select Your Exam</div>
+    <div class="fgrid">
+      <div class="field full">
+        <span class="flabel">Entrance Exam</span>
+        <select id="eng-exam" onchange="onEngExamChange()">
+          <option value="">— Choose Exam —</option>
+          <optgroup label="National">
+            <option value="jee_main">JEE Main</option>
+            <option value="jee_adv">JEE Advanced</option>
+            <option value="bitsat">BITSAT (BITS Pilani)</option>
+            <option value="viteee">VITEEE (VIT)</option>
+            <option value="srmjeee">SRMJEEE (SRM)</option>
+          </optgroup>
+          <optgroup label="South India">
+            <option value="ap_eamcet">AP EAMCET (Andhra Pradesh)</option>
+            <option value="ts_eamcet">TS EAMCET (Telangana)</option>
+            <option value="kcet">KCET (Karnataka)</option>
+            <option value="comedk">COMEDK (Karnataka Private)</option>
+            <option value="tnea">TNEA (Tamil Nadu)</option>
+            <option value="keam">KEAM (Kerala)</option>
+          </optgroup>
+          <optgroup label="West & Central">
+            <option value="mhtcet">MHT-CET (Maharashtra)</option>
+            <option value="gujcet">GUJCET (Gujarat)</option>
+            <option value="mp_pet">MP PET (Madhya Pradesh)</option>
+          </optgroup>
+          <optgroup label="North & East">
+            <option value="upsee">UPSEE / AKTU (Uttar Pradesh)</option>
+            <option value="reap">REAP (Rajasthan)</option>
+            <option value="wbjee">WBJEE (West Bengal)</option>
+            <option value="ojee">OJEE (Odisha)</option>
+            <option value="hptu_cet">HPTU CET (Himachal Pradesh)</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <div class="field" id="eng-f-score" style="display:none">
+        <span class="flabel" id="eng-score-lbl">Rank / Score</span>
+        <input type="number" id="eng-score" placeholder="e.g. 25000" min="0" oninput="onEngScore()"/>
+        <div class="score-hint" id="eng-hint"></div>
+      </div>
+
+      <div class="field" id="eng-f-pct" style="display:none">
+        <span class="flabel">Percentile (NTA Score)</span>
+        <input type="number" id="eng-pct" placeholder="e.g. 87.45" min="0" max="100" step="0.01"/>
+      </div>
+
+      <div class="field" id="eng-f-phase" style="display:none">
+        <span class="flabel" id="eng-phase-lbl">Session / Phase</span>
+        <div class="phase-wrap" id="eng-phase-wrap"></div>
+      </div>
+
+      <div class="field">
+        <span class="flabel">Category</span>
+        <select id="eng-cat">
+          <option value="general">General / UR</option>
+          <option value="obc_ncl">OBC-NCL</option>
+          <option value="sc">SC</option><option value="st">ST</option>
+          <option value="ews">EWS</option><option value="pwd">PwD</option>
+        </select>
+      </div>
+
+      <div class="field" id="eng-f-gender" style="display:none">
+        <span class="flabel">Gender Pool</span>
+        <select id="eng-gender">
+          <option value="gender_neutral">Gender Neutral</option>
+          <option value="female_supernumerary">Female / Supernumerary</option>
+        </select>
+      </div>
+
+      <div class="field" id="eng-f-state" style="display:none">
+        <span class="flabel">Home State</span>
+        <select id="eng-state"><option value="">— Select —</option>
+          <option>Andhra Pradesh</option><option>Telangana</option><option>Tamil Nadu</option>
+          <option>Karnataka</option><option>Kerala</option><option>Maharashtra</option>
+          <option>Gujarat</option><option>Rajasthan</option><option>Madhya Pradesh</option>
+          <option>Uttar Pradesh</option><option>Bihar</option><option>West Bengal</option>
+          <option>Odisha</option><option>Punjab</option><option>Haryana</option>
+          <option>Delhi</option><option>Assam</option><option>Jharkhand</option>
+          <option>Chhattisgarh</option><option>Uttarakhand</option>
+          <option>Himachal Pradesh</option><option>Jammu & Kashmir</option>
+          <option>Goa</option><option>Sikkim</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <span class="flabel">Preferred Branch</span>
+        <select id="eng-branch">
+          <option value="any">Any / Open to all</option>
+          <option value="cse">Computer Science & Engineering</option>
+          <option value="ai_ml">AI & Machine Learning</option>
+          <option value="ece">Electronics & Communication</option>
+          <option value="ee">Electrical Engineering</option>
+          <option value="mech">Mechanical Engineering</option>
+          <option value="civil">Civil Engineering</option>
+          <option value="data_science">Data Science</option>
+          <option value="it">Information Technology</option>
+          <option value="chemical">Chemical Engineering</option>
+          <option value="biotech">Biotechnology</option>
+        </select>
+      </div>
+
+      <div class="field" id="eng-f-pref">
+        <span class="flabel">College Filter</span>
+        <select id="eng-pref">
+          <option value="all">Show All</option>
+          <option value="iit">IITs Only</option>
+          <option value="nit">NITs Only</option>
+          <option value="iiit">IIITs & CFTIs</option>
+          <option value="private">Private / Deemed</option>
+          <option value="govt">Govt / State Univ</option>
+          <option value="state_only">My State Only</option>
+        </select>
+      </div>
+    </div>
+    <div class="single-college-notice" id="eng-single-notice">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>
+      <span id="eng-single-notice-txt"></span>
+    </div>
+    <div class="err" id="eng-err"></div>
+    <button class="cta" id="eng-btn" onclick="predict('engineering')"><div class="cta-inner"></div><span>[ PREDICT MY ENGINEERING COLLEGES — NIRF 2025 ]</span></button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- MEDICAL -->
+<!-- ══════════════════════════════════════════ -->
+<div class="stream-panel" id="sp-medical">
+  <div class="panel" style="margin-top:18px">
+    <div class="panel-label">Medical — NEET UG / PG Predictor</div>
+    <div class="fgrid">
+      <div class="field">
+        <span class="flabel">NEET Score (out of 720)</span>
+        <input type="number" id="med-score" placeholder="e.g. 580" min="0" max="720" oninput="onMedScore()"/>
+        <div class="score-hint" id="med-hint"></div>
+      </div>
+      <div class="field">
+        <span class="flabel">NEET Rank (AIR)</span>
+        <input type="number" id="med-rank" placeholder="e.g. 25000" min="0"/>
+      </div>
+      <div class="field">
+        <span class="flabel">Category</span>
+        <select id="med-cat">
+          <option value="general">General / UR</option>
+          <option value="obc">OBC</option><option value="sc">SC</option>
+          <option value="st">ST</option><option value="ews">EWS</option>
+          <option value="pwd">PwD</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="flabel">Home State</span>
+        <select id="med-state"><option value="">— Select —</option>
+          <option>Andhra Pradesh</option><option>Telangana</option><option>Tamil Nadu</option>
+          <option>Karnataka</option><option>Kerala</option><option>Maharashtra</option>
+          <option>Gujarat</option><option>Rajasthan</option><option>Delhi</option>
+          <option>Uttar Pradesh</option><option>Bihar</option><option>West Bengal</option>
+          <option>Odisha</option><option>Punjab</option><option>Haryana</option>
+          <option>Madhya Pradesh</option><option>Assam</option><option>Jharkhand</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="flabel">Course Preference</span>
+        <select id="med-course">
+          <option value="mbbs">MBBS</option>
+          <option value="bds">BDS (Dental)</option>
+          <option value="bams">BAMS (Ayurveda)</option>
+          <option value="bhms">BHMS (Homeopathy)</option>
+          <option value="bvsc">BVSc (Veterinary)</option>
+          <option value="bsms">BSMS (Siddha)</option>
+          <option value="any">Any Medical Course</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="flabel">College Type</span>
+        <select id="med-pref">
+          <option value="all">All Colleges</option>
+          <option value="aiims">AIIMS Only</option>
+          <option value="govt">Government Colleges</option>
+          <option value="private">Private Medical Colleges</option>
+          <option value="deemed">Deemed Universities</option>
+          <option value="state_only">My State Only</option>
+        </select>
+      </div>
+    </div>
+    <div class="err" id="med-err"></div>
+    <button class="cta" id="med-btn" onclick="predict('medical')"><div class="cta-inner"></div><span>[ PREDICT MY MEDICAL COLLEGES — NIRF 2025 ]</span></button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- LAW -->
+<!-- ══════════════════════════════════════════ -->
+<div class="stream-panel" id="sp-law">
+  <div class="panel" style="margin-top:18px">
+    <div class="panel-label">Law — CLAT / AILET / LSAT Predictor</div>
+    <div class="fgrid">
+      <div class="field">
+        <span class="flabel">Exam</span>
+        <select id="law-exam">
+          <option value="clat">CLAT (Common Law Admission Test)</option>
+          <option value="ailet">AILET (NLU Delhi)</option>
+          <option value="lsat">LSAT India</option>
+          <option value="slat">SLAT (Symbiosis)</option>
+          <option value="cuet_law">CUET Law</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="flabel">Score / Rank</span>
+        <input type="number" id="law-score" placeholder="e.g. 105 (CLAT) or AIR 500" min="0" oninput="onLawScore()"/>
+        <div class="score-hint" id="law-hint"></div>
+      </div>
+      <div class="field">
+        <span class="flabel">Category</span>
+        <select id="law-cat">
+          <option value="general">General / UR</option>
+          <option value="obc">OBC</option><option value="sc">SC</option>
+          <option value="st">ST</option><option value="pwd">PwD</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="flabel">Program</span>
+        <select id="law-prog">
+          <option value="ba_llb">BA LLB (5 yr)</option>
+          <option value="bba_llb">BBA LLB (5 yr)</option>
+          <option value="bsc_llb">BSc LLB (5 yr)</option>
+          <option value="llb">LLB (3 yr)</option>
+          <option value="llm">LLM</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="flabel">Home State</span>
+        <select id="law-state"><option value="">— Select —</option>
+          <option>Andhra Pradesh</option><option>Telangana</option><option>Tamil Nadu</option>
+          <option>Karnataka</option><option>Kerala</option><option>Maharashtra</option>
+          <option>Gujarat</option><option>Rajasthan</option><option>Delhi</option>
+          <option>Uttar Pradesh</option><option>Bihar</option><option>West Bengal</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="flabel">College Type</span>
+        <select id="law-pref">
+          <option value="all">All Law Colleges</option>
+          <option value="nlu">NLUs Only</option>
+          <option value="private">Private Law Colleges</option>
+          <option value="state_univ">State Universities</option>
+        </select>
+      </div>
+    </div>
+    <div class="err" id="law-err"></div>
+    <button class="cta" id="law-btn" onclick="predict('law')"><div class="cta-inner"></div><span>[ PREDICT MY LAW COLLEGES — NIRF 2025 ]</span></button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- BUSINESS -->
+<!-- ══════════════════════════════════════════ -->
+<div class="stream-panel" id="sp-business">
+  <div class="panel" style="margin-top:18px">
+    <div class="panel-label">Business / MBA / BBA Predictor</div>
+    <div class="fgrid">
+      <div class="field">
+        <span class="flabel">Exam</span>
+        <select id="biz-exam" onchange="onBizExam()">
+          <option value="cat">CAT (IIMs / Top MBA)</option>
+          <option value="xat">XAT (XLRI)</option>
+          <option value="snap">SNAP (Symbiosis)</option>
+          <option value="mat">MAT</option>
+          <option value="cmat">CMAT</option>
+          <option value="ipmat">IPMAT (IIM Integrated MBA)</option>
+          <option value="npat">NMIMS NPAT</option>
+          <option value="du_bms">DU BMS / BBA</option>
+          <option value="set">SET (Symbiosis BBA)</option>
+          <option value="boards_12">12th Boards % (BBA Direct)</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="flabel" id="biz-score-lbl">Score / Percentile</span>
+        <input type="number" id="biz-score" placeholder="e.g. 95 (CAT %ile)" min="0" oninput="onBizScore()"/>
+        <div class="score-hint" id="biz-hint"></div>
+      </div>
+      <div class="field">
+        <span class="flabel">Category</span>
+        <select id="biz-cat">
+          <option value="general">General / UR</option>
+          <option value="obc_ncl">OBC-NCL</option>
+          <option value="sc">SC</option><option value="st">ST</option>
+          <option value="ews">EWS</option><option value="pwd">PwD</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="flabel">Program</span>
+        <select id="biz-prog">
+          <option value="mba">MBA / PGDM (2 yr)</option>
+          <option value="bba">BBA (3 yr)</option>
+          <option value="ipm">IPM / Integrated MBA (5 yr)</option>
+          <option value="bms">BMS (Mumbai Univ)</option>
+          <option value="executive_mba">Executive MBA</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="flabel">Work Experience</span>
+        <select id="biz-exp">
+          <option value="0">Fresher (0 years)</option>
+          <option value="1-2">1–2 years</option>
+          <option value="3-5">3–5 years</option>
+          <option value="5+">5+ years</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="flabel">College Preference</span>
+        <select id="biz-pref">
+          <option value="all">All B-Schools</option>
+          <option value="iim">IIMs Only</option>
+          <option value="top15">Top 15 MBA Colleges</option>
+          <option value="private">Private B-Schools</option>
+          <option value="govt">Govt / Central</option>
+        </select>
+      </div>
+    </div>
+    <div class="err" id="biz-err"></div>
+    <button class="cta" id="biz-btn" onclick="predict('business')"><div class="cta-inner"></div><span>[ PREDICT MY BUSINESS COLLEGES — NIRF 2025 ]</span></button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- ARTS & SCIENCE -->
+<!-- ══════════════════════════════════════════ -->
+<div class="stream-panel" id="sp-arts">
+  <div class="panel" style="margin-top:18px">
+    <div class="panel-label">Arts, Science & General Degree Predictor</div>
+    <div class="fgrid">
+      <div class="field">
+        <span class="flabel">12th Board</span>
+        <select id="arts-board">
+          <option value="cbse">CBSE</option>
+          <option value="icse">ICSE / ISC</option>
+          <option value="ap_board">AP Board (BIEAP)</option>
+          <option value="ts_board">TS Board (TSBIE)</option>
+          <option value="tn_board">Tamil Nadu Board</option>
+          <option value="karnataka_board">Karnataka PUC</option>
+          <option value="maharashtra_board">Maharashtra Board (HSC)</option>
+          <option value="kerala_board">Kerala Board (DHSE)</option>
+          <option value="up_board">UP Board</option>
+          <option value="others">Other State Board</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="flabel">12th Marks %</span>
+        <input type="number" id="arts-score" placeholder="e.g. 92.4" min="0" max="100" step="0.1" oninput="onArtsScore()"/>
+        <div class="score-hint" id="arts-hint"></div>
+      </div>
+      <div class="field">
+        <span class="flabel">Stream</span>
+        <select id="arts-stream">
+          <option value="science_pcm">Science – PCM</option>
+          <option value="science_pcb">Science – PCB</option>
+          <option value="science_pcmb">Science – PCMB</option>
+          <option value="commerce">Commerce (with Math)</option>
+          <option value="commerce_no_math">Commerce (without Math)</option>
+          <option value="humanities">Humanities / Arts</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="flabel">Category</span>
+        <select id="arts-cat">
+          <option value="general">General / UR</option>
+          <option value="obc">OBC</option><option value="sc">SC</option>
+          <option value="st">ST</option><option value="ews">EWS</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="flabel">Home State</span>
+        <select id="arts-state"><option value="">— Select —</option>
+          <option>Andhra Pradesh</option><option>Telangana</option><option>Tamil Nadu</option>
+          <option>Karnataka</option><option>Kerala</option><option>Maharashtra</option>
+          <option>Gujarat</option><option>Rajasthan</option><option>Delhi</option>
+          <option>Uttar Pradesh</option><option>Bihar</option><option>West Bengal</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="flabel">Preferred Course</span>
+        <select id="arts-course">
+          <option value="bsc">B.Sc (Pure Science)</option>
+          <option value="bca">BCA (Computer Applications)</option>
+          <option value="bcom">B.Com / B.Com (Hons)</option>
+          <option value="ba_eco">BA Economics</option>
+          <option value="ba_psych">BA Psychology</option>
+          <option value="bsc_nursing">B.Sc Nursing</option>
+          <option value="bsc_agri">B.Sc Agriculture</option>
+          <option value="ba_journalism">BA Mass Comm / Journalism</option>
+          <option value="integrated_msc">Integrated M.Sc</option>
+          <option value="any">Any / Open</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="flabel">College Type</span>
+        <select id="arts-pref">
+          <option value="all">All Colleges</option>
+          <option value="central_univ">Central Universities</option>
+          <option value="iiser">IISERs / IISc</option>
+          <option value="du">Delhi University Colleges</option>
+          <option value="state_univ">State Universities</option>
+          <option value="private">Private / Autonomous</option>
+        </select>
+      </div>
+    </div>
+    <div class="err" id="arts-err"></div>
+    <button class="cta" id="arts-btn" onclick="predict('arts')"><div class="cta-inner"></div><span>[ PREDICT MY COLLEGES — NIRF 2025 ]</span></button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- BOOKMARKS -->
+<!-- ══════════════════════════════════════════ -->
+<div class="stream-panel" id="sp-bookmarks">
+  <div class="panel" style="margin-top:18px">
+    <div class="panel-label">Saved Colleges</div>
+    <div id="bm-list-wrap"><div class="no-res" style="padding:30px">No colleges saved yet. Use the ★ button on any college card to bookmark it.</div></div>
+  </div>
+</div>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="spin-ring"></div>
+  <p class="loader-label">SCANNING NIRF 2025 DATABASE <b>_</b></p>
+  <p class="loader-sub">AI ENGINE MATCHING YOUR PROFILE</p>
+</div>
+
+<!-- RESULTS -->
+<div id="results">
+  <div class="summary-panel">
+    <div class="summary-title">AI ANALYSIS — YOUR ADMISSION PROFILE</div>
+    <div class="summary-txt" id="ai-summary"></div>
+  </div>
+
+  <!-- Compare panel -->
+  <div id="compare-panel" class="compare-result-panel">
+    <div class="panel-label">College Comparison</div>
+    <div id="compare-table-wrap"></div>
+  </div>
+
+  <div class="res-head">
+    <div class="res-title">// PREDICTED COLLEGES</div>
+    <div class="res-meta" id="res-meta"></div>
+  </div>
+  <div id="clist"></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="disc">
+    ⚠ AI-GENERATED PREDICTIONS FOR GUIDANCE ONLY · VERIFY ON OFFICIAL PORTALS<br>
+    JOSAA.NIC.IN · MCC.NIC.IN · CLAT.AC.IN · IIMCAT.AC.IN · STATE COUNSELING PORTALS<br>
+    NIRF 2025 DATA · CUT-OFFS MAY VARY BY YEAR AND COUNSELING ROUND
+  </div>
+  <div class="built">BUILT BY <span>SAJEEV</span></div>
+</footer>
+
+</div><!-- .wrap -->
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"EduRank AI","description":"AI-powered college predictor for India using NIRF 2025. Engineering, Medical, Law, Business, Arts.","applicationCategory":"EducationApplication","author":{"@type":"Person","name":"Sajeev"},"offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}}
+</script>
+
+<script>
+// ── ENGINEERING EXAM CONFIG ──────────────────────────────
+const ENG_CFG = {
+  jee_main:{name:'JEE Main',pct:true,gender:true,state:true,
+    phases:['Session 1 (Jan)','Session 2 (Apr)','Best of Both'],phaseLbl:'Session',
+    lbl:'CRL Rank (All India Rank)',ph:'e.g. 25000',hint:v=>v?`AIR: ${parseInt(v).toLocaleString('en-IN')}`:''},
+  jee_adv:{name:'JEE Advanced',pct:false,gender:false,state:false,
+    phases:['2025'],phaseLbl:'Year',
+    lbl:'JEE Advanced CRL Rank',ph:'e.g. 1500',hint:v=>v?`ADV RANK: ${parseInt(v).toLocaleString('en-IN')}`:''},
+  ap_eamcet:{name:'AP EAMCET',pct:false,gender:false,state:true,
+    phases:['Engineering Stream (E)','Agriculture Stream (A)','Pharmacy (P)'],phaseLbl:'Stream',
+    lbl:'AP EAMCET Rank',ph:'e.g. 8000',hint:v=>v?`AP RANK: ${parseInt(v).toLocaleString('en-IN')}`:''},
+  ts_eamcet:{name:'TS EAMCET',pct:false,gender:false,state:true,
+    phases:['Engineering (E)','Agriculture & Medical (AM)'],phaseLbl:'Stream',
+    lbl:'TS EAMCET Rank',ph:'e.g. 5000',hint:v=>v?`TS RANK: ${parseInt(v).toLocaleString('en-IN')}`:''},
+  kcet:{name:'KCET',pct:false,gender:false,state:true,
+    phases:['Round 1','Round 2','Round 3 (Stray Vacancy)'],phaseLbl:'Round',
+    lbl:'KCET State Merit Rank',ph:'e.g. 12000',hint:v=>v?`KCET RANK: ${parseInt(v).toLocaleString('en-IN')}`:''},
+  comedk:{name:'COMEDK',pct:false,gender:false,state:true,
+    phases:['Round 1','Round 2','Spot Round'],phaseLbl:'Round',
+    lbl:'COMEDK Rank',ph:'e.g. 8000',hint:v=>v?`COMEDK RANK: ${parseInt(v).toLocaleString('en-IN')}`:''},
+  tnea:{name:'TNEA',pct:false,gender:false,state:true,
+    phases:['Phase 1 (Single Window)','Phase 2 (Special Reservation)','Spot Admission'],phaseLbl:'Phase',
+    lbl:'TNEA Rank or Cutoff Marks (out of 200)',ph:'e.g. 185 or 5000',
+    hint:v=>v?(parseFloat(v)<=200?`CUTOFF MARKS: ${v}/200`:`TNEA RANK: ${parseInt(v).toLocaleString('en-IN')}`):''},
+  keam:{name:'KEAM',pct:false,gender:false,state:true,
+    phases:['Phase 1','Phase 2','Mop-up Round'],phaseLbl:'Phase',
+    lbl:'KEAM Rank',ph:'e.g. 3500',hint:v=>v?`KEAM RANK: ${parseInt(v).toLocaleString('en-IN')}`:''},
+  mhtcet:{name:'MHT-CET',pct:true,gender:false,state:true,
+    phases:['CAP Round 1','CAP Round 2','CAP Round 3','Institute Level'],phaseLbl:'CAP Round',
+    lbl:'MHT-CET State Merit No.',ph:'e.g. 15000',hint:v=>v?`MH MERIT: ${parseInt(v).toLocaleString('en-IN')}`:''},
+  gujcet:{name:'GUJCET',pct:false,gender:false,state:true,
+    phases:['Round 1','Round 2','Round 3'],phaseLbl:'Round',
+    lbl:'GUJCET Rank / Score',ph:'e.g. 2000',hint:v=>v?`GUJ RANK: ${parseInt(v).toLocaleString('en-IN')}`:''},
+  upsee:{name:'UPSEE / AKTU',pct:false,gender:false,state:true,
+    phases:['Round 1','Round 2','Round 3 (Spot)'],phaseLbl:'Round',
+    lbl:'UPSEE / AKTU State Rank',ph:'e.g. 20000',hint:v=>v?`UP RANK: ${parseInt(v).toLocaleString('en-IN')}`:''},
+  reap:{name:'REAP (Rajasthan)',pct:false,gender:false,state:true,
+    phases:['Round 1','Round 2','Round 3'],phaseLbl:'Round',
+    lbl:'REAP Score or JEE Rank',ph:'e.g. 50000',hint:v=>v?`REAP RANK: ${parseInt(v).toLocaleString('en-IN')}`:''},
+  wbjee:{name:'WBJEE',pct:false,gender:false,state:true,
+    phases:['Round 1','Round 2','Mop-up'],phaseLbl:'Round',
+    lbl:'WBJEE Category Rank',ph:'e.g. 4000',hint:v=>v?`WB RANK: ${parseInt(v).toLocaleString('en-IN')}`:''},
+  ojee:{name:'OJEE',pct:false,gender:false,state:true,
+    phases:['Round 1','Round 2','Spot'],phaseLbl:'Round',
+    lbl:'OJEE Rank',ph:'e.g. 3000',hint:v=>v?`OJEE RANK: ${parseInt(v).toLocaleString('en-IN')}`:''},
+  hptu_cet:{name:'HPTU CET',pct:false,gender:false,state:true,
+    phases:['Round 1','Round 2'],phaseLbl:'Round',
+    lbl:'HPTU CET Rank',ph:'e.g. 1500',hint:v=>v?`HP RANK: ${parseInt(v).toLocaleString('en-IN')}`:''},
+  bitsat:{name:'BITSAT',pct:false,gender:false,state:false,singleCollege:true,
+    singleCollegeNote:'BITSAT admits only to BITS Pilani campuses (Pilani, Goa, Hyderabad)',
+    phases:['Session 1 (2025)','Session 2 (2025)'],phaseLbl:'Session',
+    lbl:'BITSAT Score (out of 450)',ph:'e.g. 320',hint:v=>v?`BITSAT: ${v}/450`:''},
+  viteee:{name:'VITEEE',pct:false,gender:false,state:false,singleCollege:true,
+    singleCollegeNote:'VITEEE admits only to VIT campuses (Vellore, Chennai, Bhopal, AP)',
+    phases:['2025'],phaseLbl:'Year',
+    lbl:'VITEEE Rank',ph:'e.g. 5000',hint:v=>v?`VIT RANK: ${parseInt(v).toLocaleString('en-IN')}`:''},
+  srmjeee:{name:'SRMJEEE',pct:false,gender:false,state:false,singleCollege:true,
+    singleCollegeNote:'SRMJEEE admits only to SRM campuses (Kattankulathur, Ramapuram, Vadapalani, Delhi-NCR, AP)',
+    phases:['Phase 1','Phase 2'],phaseLbl:'Phase',
+    lbl:'SRMJEEE Rank',ph:'e.g. 10000',hint:v=>v?`SRM RANK: ${parseInt(v).toLocaleString('en-IN')}`:''},
+  mp_pet:{name:'MP PET',pct:false,gender:false,state:true,
+    phases:['Round 1','Round 2','Mop-up'],phaseLbl:'Round',
+    lbl:'MP PET Rank',ph:'e.g. 15000',hint:v=>v?`MP RANK: ${parseInt(v).toLocaleString('en-IN')}`:''}
+};
+
+let engPhase = '';
+const bookmarks = JSON.parse(localStorage.getItem('edurank_bm') || '[]');
+const compareSet = new Set();
+
+// ── STREAM SWITCH ─────────────────────────────────────────
+function switchStream(name, el) {
+  document.querySelectorAll('.stab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.stream-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('sp-' + name).classList.add('active');
+  document.getElementById('results').className = '';
+  document.getElementById('loader').className = 'loader';
+  if (name === 'bookmarks') renderBookmarks();
+}
+
+// ── ENG EXAM CHANGE ───────────────────────────────────────
+function onEngExamChange() {
+  const exam = document.getElementById('eng-exam').value;
+  const cfg = ENG_CFG[exam];
+  if (!cfg) {
+    ['eng-f-score','eng-f-pct','eng-f-phase','eng-f-gender','eng-f-state','eng-f-pref']
+      .forEach(id => document.getElementById(id).style.display = 'none');
+    document.getElementById('eng-single-notice').className = 'single-college-notice';
+    return;
+  }
+
+  document.getElementById('eng-f-score').style.display = 'flex';
+  document.getElementById('eng-score-lbl').textContent = cfg.lbl;
+  document.getElementById('eng-score').placeholder = cfg.ph;
+  document.getElementById('eng-hint').textContent = '';
+  document.getElementById('eng-f-pct').style.display = cfg.pct ? 'flex' : 'none';
+  document.getElementById('eng-f-gender').style.display = cfg.gender ? 'flex' : 'none';
+  document.getElementById('eng-f-state').style.display = cfg.state ? 'flex' : 'none';
+
+  // Hide college filter for single-institution exams; show info notice instead
+  if (cfg.singleCollege) {
+    document.getElementById('eng-f-pref').style.display = 'none';
+    document.getElementById('eng-single-notice-txt').textContent = cfg.singleCollegeNote;
+    document.getElementById('eng-single-notice').className = 'single-college-notice on';
+  } else {
+    document.getElementById('eng-f-pref').style.display = 'flex';
+    document.getElementById('eng-single-notice').className = 'single-college-notice';
+  }
+
+  const pw = document.getElementById('eng-phase-wrap');
+  const pf = document.getElementById('eng-f-phase');
+  engPhase = cfg.phases[0];
+  if (cfg.phases.length > 1) {
+    document.getElementById('eng-phase-lbl').textContent = cfg.phaseLbl;
+    pw.innerHTML = cfg.phases.map((p,i) =>
+      `<div class="pchip${i===0?' active':''}" onclick="selEngPhase(this,'${p.replace(/'/g,"\\'")}')">${p}</div>`
+    ).join('');
+    pf.style.display = 'flex';
+  } else { pf.style.display = 'none'; }
+}
+
+function selEngPhase(el, p) {
+  document.querySelectorAll('#eng-phase-wrap .pchip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active'); engPhase = p;
+}
+
+function onEngScore() {
+  const exam = document.getElementById('eng-exam').value;
+  const cfg = ENG_CFG[exam];
+  const v = document.getElementById('eng-score').value;
+  document.getElementById('eng-hint').textContent = cfg ? cfg.hint(v) : '';
+}
+
+function onMedScore() {
+  const v = document.getElementById('med-score').value;
+  const pct = v ? ((parseFloat(v)/720)*100).toFixed(1) : '';
+  document.getElementById('med-hint').textContent = v ? `${v}/720 · ~${pct}% · Rough AIR estimate based on score` : '';
+}
+function onLawScore() {
+  const exam = document.getElementById('law-exam').value;
+  const v = document.getElementById('law-score').value;
+  document.getElementById('law-hint').textContent = v ? `${exam.toUpperCase()}: ${v}` : '';
+}
+function onBizScore() {
+  const exam = document.getElementById('biz-exam').value;
+  const v = document.getElementById('biz-score').value;
+  const lbls = {cat:'CAT Percentile',xat:'XAT Percentile',snap:'SNAP Score',
+    mat:'MAT Score',cmat:'CMAT Score',ipmat:'IPMAT Score',npat:'NPAT Score',
+    boards_12:'12th Marks %',du_bms:'12th %',set:'SET Score'};
+  document.getElementById('biz-hint').textContent = v ? `${lbls[exam]||'Score'}: ${v}` : '';
+}
+function onBizExam() {
+  const exam = document.getElementById('biz-exam').value;
+  const lbls = {cat:'CAT Percentile',xat:'XAT Percentile',snap:'SNAP Score',
+    mat:'MAT Score (out of 800)',cmat:'CMAT Score (out of 400)',ipmat:'IPMAT Score',
+    npat:'NMIMS NPAT Score',du_bms:'12th Marks %',set:'SET Score',boards_12:'12th Marks %'};
+  document.getElementById('biz-score-lbl').textContent = lbls[exam] || 'Score / Percentile';
+}
+function onArtsScore() {
+  const v = document.getElementById('arts-score').value;
+  document.getElementById('arts-hint').textContent = v ? `12th MARKS: ${v}%` : '';
+}
+
+// ── PREDICT ───────────────────────────────────────────────
+async function predict(stream) {
+  const errId = `${stream[0]==='a'?'arts':stream[0]==='b'?'biz':stream.substring(0,3)}-err`;
+  const errEl = document.getElementById(
+    stream==='engineering'?'eng-err':stream==='medical'?'med-err':
+    stream==='law'?'law-err':stream==='business'?'biz-err':'arts-err');
+  const btn = document.getElementById(
+    stream==='engineering'?'eng-btn':stream==='medical'?'med-btn':
+    stream==='law'?'law-btn':stream==='business'?'biz-btn':'arts-btn');
+  errEl.className='err';
+
+  let profile = '';
+  if (stream==='engineering') {
+    const exam = document.getElementById('eng-exam').value;
+    const score = document.getElementById('eng-score').value;
+    if (!exam) { errEl.textContent='[ ERROR ] Please select an entrance exam.'; errEl.className='err on'; return; }
+    if (!score) { errEl.textContent='[ ERROR ] Please enter your rank or score.'; errEl.className='err on'; return; }
+    const cfg = ENG_CFG[exam];
+    const pct = document.getElementById('eng-pct').value;
+    const cat = document.getElementById('eng-cat').options[document.getElementById('eng-cat').selectedIndex].text;
+    const gender = document.getElementById('eng-gender').style.display!=='none'
+      ? document.getElementById('eng-gender').options[document.getElementById('eng-gender').selectedIndex].text : 'Gender Neutral';
+    const state = document.getElementById('eng-state').value || 'Not specified';
+    const branch = document.getElementById('eng-branch').options[document.getElementById('eng-branch').selectedIndex].text;
+    const pref = cfg.singleCollege
+      ? 'Institute campuses only'
+      : document.getElementById('eng-pref').options[document.getElementById('eng-pref').selectedIndex].text;
+    profile = `Stream: Engineering\nExam: ${cfg.name}\nRank/Score: ${score}${pct?` | Percentile: ${pct}`:''}\nSession/Phase: ${engPhase||cfg.phases[0]}\nCategory: ${cat}\nGender Pool: ${gender}\nHome State: ${state}\nPreferred Branch: ${branch}\nCollege Filter: ${pref}`;
+  } else if (stream==='medical') {
+    const score = document.getElementById('med-score').value;
+    const rank = document.getElementById('med-rank').value;
+    if (!score && !rank) { errEl.textContent='[ ERROR ] Please enter your NEET score or rank.'; errEl.className='err on'; return; }
+    const cat = document.getElementById('med-cat').options[document.getElementById('med-cat').selectedIndex].text;
+    const state = document.getElementById('med-state').value || 'Not specified';
+    const course = document.getElementById('med-course').options[document.getElementById('med-course').selectedIndex].text;
+    const pref = document.getElementById('med-pref').options[document.getElementById('med-pref').selectedIndex].text;
+    profile = `Stream: Medical\nExam: NEET UG 2025\nNEET Score: ${score||'Not given'}/720\nNEET AIR: ${rank||'Not given'}\nCategory: ${cat}\nHome State: ${state}\nCourse: ${course}\nCollege Filter: ${pref}`;
+  } else if (stream==='law') {
+    const score = document.getElementById('law-score').value;
+    if (!score) { errEl.textContent='[ ERROR ] Please enter your score or rank.'; errEl.className='err on'; return; }
+    const exam = document.getElementById('law-exam').options[document.getElementById('law-exam').selectedIndex].text;
+    const cat = document.getElementById('law-cat').options[document.getElementById('law-cat').selectedIndex].text;
+    const prog = document.getElementById('law-prog').options[document.getElementById('law-prog').selectedIndex].text;
+    const state = document.getElementById('law-state').value || 'Not specified';
+    const pref = document.getElementById('law-pref').options[document.getElementById('law-pref').selectedIndex].text;
+    profile = `Stream: Law\nExam: ${exam}\nScore/Rank: ${score}\nCategory: ${cat}\nProgram: ${prog}\nHome State: ${state}\nCollege Filter: ${pref}`;
+  } else if (stream==='business') {
+    const score = document.getElementById('biz-score').value;
+    if (!score) { errEl.textContent='[ ERROR ] Please enter your score or percentile.'; errEl.className='err on'; return; }
+    const exam = document.getElementById('biz-exam').options[document.getElementById('biz-exam').selectedIndex].text;
+    const cat = document.getElementById('biz-cat').options[document.getElementById('biz-cat').selectedIndex].text;
+    const prog = document.getElementById('biz-prog').options[document.getElementById('biz-prog').selectedIndex].text;
+    const exp = document.getElementById('biz-exp').options[document.getElementById('biz-exp').selectedIndex].text;
+    const pref = document.getElementById('biz-pref').options[document.getElementById('biz-pref').selectedIndex].text;
+    profile = `Stream: Business / MBA\nExam: ${exam}\nScore/Percentile: ${score}\nCategory: ${cat}\nProgram: ${prog}\nWork Experience: ${exp}\nCollege Filter: ${pref}`;
+  } else {
+    const score = document.getElementById('arts-score').value;
+    if (!score) { errEl.textContent='[ ERROR ] Please enter your 12th marks.'; errEl.className='err on'; return; }
+    const board = document.getElementById('arts-board').options[document.getElementById('arts-board').selectedIndex].text;
+    const str = document.getElementById('arts-stream').options[document.getElementById('arts-stream').selectedIndex].text;
+    const cat = document.getElementById('arts-cat').options[document.getElementById('arts-cat').selectedIndex].text;
+    const state = document.getElementById('arts-state').value || 'Not specified';
+    const course = document.getElementById('arts-course').options[document.getElementById('arts-course').selectedIndex].text;
+    const pref = document.getElementById('arts-pref').options[document.getElementById('arts-pref').selectedIndex].text;
+    profile = `Stream: Arts & Science\nBoard: ${board}\n12th Marks: ${score}%\nStream: ${str}\nCategory: ${cat}\nHome State: ${state}\nPreferred Course: ${course}\nCollege Filter: ${pref}`;
+  }
+
+  document.getElementById('loader').className = 'loader on';
+  document.getElementById('results').className = '';
+  btn.disabled = true;
+  compareSet.clear();
+
+  const prompt = `You are an expert Indian college admissions counselor with complete knowledge of NIRF 2025 rankings, all entrance exam cut-offs, placement data, and campus details for all colleges across India.
+
+Student profile:
+${profile}
+
+Using NIRF 2025 rankings and realistic 2024-25 cut-off / admission data, provide accurate, personalized college predictions.
+
+Return ONLY a valid JSON object, absolutely no markdown, no backticks, no text outside JSON:
+{
+  "summary": "3-4 sentences: describe the student's profile strength, what tier of colleges they can realistically target, any home-state quota or reservation advantage, and one sharp counseling tip.",
+  "totalFound": <number>,
+  "colleges": [
+    {
+      "name": "Full Official College Name",
+      "location": "City, State",
+      "tier": "safe|moderate|reach",
+      "nirf2025": "<NIRF 2025 Engineering/Medical/Law/Management rank as number OR 'Not Ranked'>",
+      "type": "IIT|NIT|IIIT|CFTI|AIIMS|NLU|IIM|State Govt|Deemed|Private|Central University",
+      "branch": "<Specific branch or course for this prediction>",
+      "cutoffRank": "<Opening — Closing rank/score range for this category and exam>",
+      "quota": "AI|HS|OS|State|Institute",
+      "round": "<JoSAA Round / Counseling round where likely>",
+      "avgLPA": "<Average placement LPA, e.g. 12.5 LPA>",
+      "medianLPA": "<Median LPA>",
+      "highestLPA": "<Highest LPA>",
+      "placementRate": "<Placement % e.g. 85%>",
+      "intake": "<Seats in this branch>",
+      "established": "<Year>",
+      "accreditation": "NAAC A++|NAAC A+|NAAC A|NBA|ABET|N/A",
+      "counseling": "<Exact counseling process name>",
+      "annualFee": "<Approximate annual fee e.g. ₹1.25L or ₹8.5L>",
+      "tags": ["tag1","tag2","tag3"],
+      "insight": "One specific actionable insight for this student about this college — seat trends, closing rank history, campus life, or placement strategy."
+    }
+  ]
+}
+
+Rules:
+- 8-14 colleges, balanced across reach/moderate/safe tiers
+- NIRF 2025 key ranks: IIT Madras 1, IIT Delhi 2, IIT Bombay 3, IIT Kharagpur 4, IIT Kanpur 5, IIT Roorkee 6, IIT Guwahati 7, NIT Trichy 10, NIT Rourkela 18, NIT Surathkal 21, NIT Calicut 24, NIT Warangal 29, NIT Silchar 38; AIIMS Delhi Rank 1 (medical); NLU Bangalore Rank 1 (law); IIM Ahmedabad Rank 1 (management)
+- Use real 2024-25 closing ranks and realistic cut-offs for the given exam and category
+- Annual fees: IIT ~₹2.2L/yr, NIT ~₹1.5L/yr, private varies ₹2L-₹15L/yr
+- Tags: use specific ones like "JoSAA Round 6 Likely", "Home State Quota", "Top CSE Placements", "Rising NIRF Rank", "Strong Research", "Good ROI", "Supernumerary Pool", "15% All India Quota" etc.
+- Be accurate and honest — do not inflate prospects`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:5000,
+        messages:[{role:'user',content:prompt}]})
+    });
+    const data = await res.json();
+    const raw = data.content.map(b=>b.text||'').join('');
+    const clean = raw.replace(/```json|```/g,'').trim();
+    const parsed = JSON.parse(clean);
+    renderResults(parsed, stream);
+  } catch(e) {
+    document.getElementById('loader').className='loader';
+    errEl.textContent='[ ERROR ] AI engine failed. Please try again.';
+    errEl.className='err on';
+    btn.disabled=false;
+    console.error(e);
+  }
+}
+
+// ── RENDER ─────────────────────────────────────────────────
+function renderResults(data, stream) {
+  document.getElementById('loader').className='loader';
+  document.getElementById(
+    stream==='engineering'?'eng-btn':stream==='medical'?'med-btn':
+    stream==='law'?'law-btn':stream==='business'?'biz-btn':'arts-btn'
+  ).disabled = false;
+
+  document.getElementById('ai-summary').textContent = data.summary||'';
+  document.getElementById('res-meta').textContent =
+    (data.totalFound||data.colleges.length)+' COLLEGES · NIRF 2025 · AI PREDICTION';
+
+  document.getElementById('compare-panel').className='compare-result-panel';
+  document.getElementById('compare-table-wrap').innerHTML='';
+
+  const list = document.getElementById('clist');
+  list.innerHTML='';
+
+  if (!data.colleges||!data.colleges.length) {
+    list.innerHTML='<div class="no-res">No colleges found. Try adjusting filters or score.</div>';
+    document.getElementById('results').className='on';
+    return;
+  }
+
+  const order={reach:0,moderate:1,safe:2};
+  const sorted=[...data.colleges].sort((a,b)=>(order[a.tier]||1)-(order[b.tier]||1));
+  const labels={reach:'▲ REACH COLLEGES',moderate:'◈ MODERATE CHANCES',safe:'✓ SAFE COLLEGES'};
+
+  // store colleges globally for compare
+  window._colleges = sorted;
+
+  let lastTier=null;
+  sorted.forEach((c,i)=>{
+    if(c.tier!==lastTier){
+      list.innerHTML+=`<div class="divider"><div class="div-line"></div><div class="div-txt">${labels[c.tier]||c.tier.toUpperCase()}</div><div class="div-line"></div></div>`;
+      lastTier=c.tier;
+    }
+    const tc=c.tier==='safe'?'t-safe':c.tier==='moderate'?'t-mod':'t-reach';
+    const tl=c.tier==='safe'?'SAFE BET':c.tier==='moderate'?'MODERATE':'REACH';
+    const tags=(c.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('');
+    const isBm=bookmarks.some(b=>b.name===c.name);
+
+    list.innerHTML+=`
+      <div class="card" id="card-${i}">
+        <div class="card-accent"></div>
+        <button class="bm-btn${isBm?' saved':''}" onclick="toggleBookmark(${i},'${c.name.replace(/'/g,"\\'")}','${(c.location||'').replace(/'/g,"\\'")}','${c.type||''}','${c.avgLPA||''}','${c.nirf2025||''}')" title="Bookmark this college">★</button>
+        <span class="tier-badge ${tc}">${tl}</span>
+        <div class="c-name">${i+1}. ${c.name}</div>
+        <div class="c-loc">${c.location} · ${c.type} · Est. ${c.established||'N/A'} · ${c.accreditation||'N/A'}</div>
+        <div class="stats">
+          <div class="sbox" data-tip="NIRF 2025 ranking"><div class="slabel">NIRF 2025</div><div class="sval">${c.nirf2025||'—'}</div></div>
+          <div class="sbox"><div class="slabel">BRANCH</div><div class="sval sm">${c.branch||'—'}</div></div>
+          <div class="sbox" data-tip="Expected cut-off for your category"><div class="slabel">CUTOFF RANGE</div><div class="sval m" style="font-size:10px">${c.cutoffRank||'—'}</div></div>
+          <div class="sbox"><div class="slabel">QUOTA · ROUND</div><div class="sval xs">${c.quota||'—'} · ${c.round||'—'}</div></div>
+          <div class="sbox"><div class="slabel">AVG LPA</div><div class="sval g">${c.avgLPA||'—'}</div></div>
+          <div class="sbox"><div class="slabel">MEDIAN LPA</div><div class="sval g">${c.medianLPA||'—'}</div></div>
+          <div class="sbox"><div class="slabel">HIGHEST LPA</div><div class="sval gr">${c.highestLPA||'—'}</div></div>
+          <div class="sbox"><div class="slabel">PLACEMENT %</div><div class="sval">${c.placementRate||'—'}</div></div>
+          <div class="sbox"><div class="slabel">ANNUAL FEE</div><div class="sval sm">${c.annualFee||'—'}</div></div>
+          <div class="sbox"><div class="slabel">INTAKE</div><div class="sval sm">${c.intake||'—'} seats</div></div>
+          <div class="sbox" style="grid-column:span 2"><div class="slabel">COUNSELING</div><div class="sval xs">${c.counseling||'—'}</div></div>
+        </div>
+        ${tags?`<div class="tags">${tags}</div>`:''}
+        ${c.insight?`<div class="insight"><div class="i-label">// AI INSIGHT</div>${c.insight}</div>`:''}
+        <div class="card-compare">
+          <input type="checkbox" id="cmp-${i}" onchange="toggleCompare(${i},this)"/>
+          <label for="cmp-${i}">ADD TO COMPARE</label>
+        </div>
+      </div>`;
+  });
+
+  document.getElementById('results').className='on';
+  document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── COMPARE ────────────────────────────────────────────────
+function toggleCompare(idx, el) {
+  if(el.checked) {
+    if(compareSet.size>=3){el.checked=false;return;}
+    compareSet.add(idx);
+  } else { compareSet.delete(idx); }
+  renderCompare();
+}
+
+function renderCompare() {
+  const panel = document.getElementById('compare-panel');
+  if(compareSet.size<2){panel.className='compare-result-panel';return;}
+  const colleges = [...compareSet].map(i=>window._colleges[i]);
+  const fields=[
+    ['Name','name'],['Location','location'],['Type','type'],
+    ['NIRF 2025','nirf2025'],['Branch','branch'],
+    ['Cutoff Range','cutoffRank'],['Avg LPA','avgLPA'],
+    ['Median LPA','medianLPA'],['Highest LPA','highestLPA'],
+    ['Placement %','placementRate'],['Annual Fee','annualFee'],
+    ['Intake','intake'],['Accreditation','accreditation'],['Counseling','counseling']
+  ];
+  let html=`<table class="compare-table"><thead><tr><th>FIELD</th>${colleges.map(c=>`<th>${c.name}</th>`).join('')}</tr></thead><tbody>`;
+  fields.forEach(([lbl,key])=>{
+    html+=`<tr><td>${lbl.toUpperCase()}</td>${colleges.map(c=>`<td>${c[key]||'—'}</td>`).join('')}</tr>`;
+  });
+  html+=`</tbody></table>`;
+  document.getElementById('compare-table-wrap').innerHTML=html;
+  panel.className='compare-result-panel on';
+  panel.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── BOOKMARKS ─────────────────────────────────────────────
+function toggleBookmark(idx,name,loc,type,lpa,nirf) {
+  const btn=document.querySelector(`#card-${idx} .bm-btn`);
+  const exists=bookmarks.findIndex(b=>b.name===name);
+  if(exists>=0){
+    bookmarks.splice(exists,1);
+    btn.classList.remove('saved');
+  } else {
+    bookmarks.push({name,loc,type,lpa,nirf});
+    btn.classList.add('saved');
+  }
+  localStorage.setItem('edurank_bm',JSON.stringify(bookmarks));
+  updateBmCount();
+}
+
+function updateBmCount() {
+  const el=document.getElementById('bm-count');
+  if(bookmarks.length>0){el.textContent=bookmarks.length;el.style.display='inline';}
+  else{el.style.display='none';}
+}
+
+function renderBookmarks() {
+  const wrap=document.getElementById('bm-list-wrap');
+  if(!bookmarks.length){
+    wrap.innerHTML='<div class="no-res" style="padding:30px">No colleges saved yet. Search and use the ★ button to bookmark colleges.</div>';
+    return;
+  }
+  wrap.innerHTML=bookmarks.map((b,i)=>`
+    <div class="bm-item">
+      <div>
+        <div class="bm-name">${b.name}</div>
+        <div style="font-family:var(--fm);font-size:9px;color:var(--muted);margin-top:2px">${b.loc} · ${b.type} · NIRF: ${b.nirf} · Avg: ${b.lpa}</div>
+      </div>
+      <button class="bm-rm" onclick="removeBm(${i})">✕ REMOVE</button>
+    </div>`).join('');
+}
+
+function removeBm(i) {
+  bookmarks.splice(i,1);
+  localStorage.setItem('edurank_bm',JSON.stringify(bookmarks));
+  updateBmCount();
+  renderBookmarks();
+}
+
+updateBmCount();
+</script>
+</body>
+</html>
